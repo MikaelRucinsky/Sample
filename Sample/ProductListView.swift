@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ProductListView: View {
     
+    @State private var showingCategories = false
+    @State private var title = "Products"
+    
     @State var products = [Product]()
+    @State var categories = [Category]()
     
     @StateObject private var viewModel = SampleViewModel(environment: URL(string: "https://fakestoreapi.com")!)
     
@@ -20,10 +24,33 @@ struct ProductListView: View {
                     .frame(height: 100)
             }
             .listStyle(.plain)
-            .navigationTitle(Text("Products"))
+            .navigationTitle(Text(title))
             .toolbar {
-                Button("Help") {
-                    print("Help tapped!")
+                Button("Filter") {
+                    Task {
+                        do {
+                            categories = try await viewModel.loadCategories()
+                            showingCategories = true
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+            .confirmationDialog("Select category", isPresented: $showingCategories, titleVisibility: .visible) {
+                ForEach(categories) { category in
+                    Button(category.title) {
+                        title = category.title
+                        
+                        Task {
+                            do {
+                                products = try await viewModel.filterByCategory(category.title)
+                                showingCategories = false
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -52,8 +79,11 @@ struct ProductRowView: View {
                     .frame(width: 60)
             })
         
-            VStack {
+            VStack(alignment: .leading) {
+                
                 Text(product.title)
+                    .fontWeight(.bold)
+                
                 Text(product.category)
             }
         }

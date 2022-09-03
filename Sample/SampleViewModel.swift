@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct Category: Identifiable {
+    let id = UUID()
+    let title: String
+}
+
 final class SampleViewModel: ObservableObject {
     
     private var environment: URL
@@ -31,8 +36,9 @@ final class SampleViewModel: ObservableObject {
         try await service.productDetail("/products/\(id)")
     }
     
-    func loadCategories() async throws -> [String] {
-        try await service.categories("/products/categories")
+    func loadCategories() async throws -> [Category] {
+        let values = try await service.categories("/products/categories")
+        return values.compactMap(Category.init(title:))
     }
     
     func filterByCategory(_ category: String) async throws -> [Product] {
