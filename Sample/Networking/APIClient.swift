@@ -9,6 +9,15 @@ import Foundation
 
 enum Resources {}
 
+extension String {
+    func stringByAddingPercentEncodingForRFC3986() -> String? {
+        let unreserved = "-._~/?"
+        let allowed = NSMutableCharacterSet.alphanumeric()
+        allowed.addCharacters(in: unreserved)
+        return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
+    }
+}
+
 actor APIClient {
     private let configuration: Configuration
     private let session: URLSession
@@ -97,10 +106,14 @@ actor APIClient {
     }
     
     private func makeURL(path: String) throws -> URL {
-        guard let url = URL(string: path),
-              var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
-                  throw SampleError.badURL
-              }
+        guard let url = URL(string: path.stringByAddingPercentEncodingForRFC3986() ?? "") else {
+            throw SampleError.badURL
+        }
+        
+        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            throw SampleError.badURL
+        }
+        
         if path.starts(with: "/") {
             components.scheme = configuration.environment.scheme
             components.host = configuration.environment.host
