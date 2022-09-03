@@ -31,6 +31,10 @@ struct Product: Codable {
         case price
         case rating
     }
+    
+    func priceValue() -> String {
+        String(format: "%.2f", price) + " €"
+    }
 }
 
 extension Resources {

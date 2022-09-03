@@ -9,19 +9,23 @@ import SwiftUI
 
 struct ProductListView: View {
     
-    @State private var showingCategories = false
     @State private var title = "Products"
-    
-    @State var products = [Product]()
-    @State var categories = [Category]()
+    @State private var showingCategories = false
+    @State private var products = [Product]()
+    @State private var categories = [Category]()
     
     @StateObject private var viewModel = SampleViewModel(environment: URL(string: "https://fakestoreapi.com")!)
     
     var body: some View {
         NavigationView {
             List(products, id: \.ident) { product in
-                ProductRowView(product: product)
-                    .frame(height: 100)
+                NavigationLink {
+                    ProductDetailView(productID: product.ident,
+                                      viewModel: viewModel)
+                } label: {
+                    ProductRowView(product: product)
+                        .frame(height: 100)
+                }
             }
             .listStyle(.plain)
             .navigationTitle(Text(title))
@@ -59,32 +63,6 @@ struct ProductListView: View {
                 products = try await viewModel.loadProducts()
             } catch {
                 print(error.localizedDescription)
-            }
-        }
-    }
-}
-
-struct ProductRowView: View {
-    let product: Product
-    
-    var body: some View {
-        HStack {
-            AsyncImage(url: product.imageURL,
-                       content: { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 60, maxHeight: 80)},
-                       placeholder: {
-                ProgressView()
-                    .frame(width: 60)
-            })
-        
-            VStack(alignment: .leading) {
-                
-                Text(product.title)
-                    .fontWeight(.bold)
-                
-                Text(product.category)
             }
         }
     }
