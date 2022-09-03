@@ -33,7 +33,7 @@ struct ProductListView: View {
                 Button("Filter") {
                     Task {
                         do {
-                            categories = try await viewModel.loadCategories()
+                            categories = try await viewModel.loadCategoriesWithFilter(title)
                             showingCategories = true
                         } catch {
                             print(error.localizedDescription)
@@ -41,17 +41,32 @@ struct ProductListView: View {
                     }
                 }
             }
-            .confirmationDialog("Select category", isPresented: $showingCategories, titleVisibility: .visible) {
+            .confirmationDialog("Select category", isPresented: $showingCategories) {
                 ForEach(categories) { category in
-                    Button(category.title) {
-                        title = category.title
-                        
-                        Task {
-                            do {
-                                products = try await viewModel.filterByCategory(category.title)
-                                showingCategories = false
-                            } catch {
-                                print(error.localizedDescription)
+                    if category.isSelected {
+                        Button("Cancel \(category.title)", role: .destructive) {
+                            title = "Products"
+                            
+                            Task {
+                                do {
+                                    products = try await viewModel.loadProducts()
+                                    showingCategories = false
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        }
+                    } else {
+                        Button(category.title) {
+                            title = category.title
+                            
+                            Task {
+                                do {
+                                    products = try await viewModel.filterByCategory(category.title)
+                                    showingCategories = false
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
                             }
                         }
                     }

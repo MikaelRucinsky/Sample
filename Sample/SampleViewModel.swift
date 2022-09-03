@@ -10,6 +10,7 @@ import Foundation
 struct Category: Identifiable {
     let id = UUID()
     let title: String
+    let isSelected: Bool
 }
 
 final class SampleViewModel: ObservableObject {
@@ -36,9 +37,11 @@ final class SampleViewModel: ObservableObject {
         try await service.productDetail("/products/\(id)")
     }
     
-    func loadCategories() async throws -> [Category] {
-        let values = try await service.categories("/products/categories")
-        return values.compactMap(Category.init(title:))
+    func loadCategoriesWithFilter(_ title: String) async throws -> [Category] {
+        var values = try await service.categories("/products/categories")
+        values.move(title, to: 0)
+        let c = values.map( { Category.init(title: $0, isSelected: $0 == title) })
+        return c
     }
     
     func filterByCategory(_ category: String) async throws -> [Product] {
