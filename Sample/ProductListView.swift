@@ -16,6 +16,8 @@ struct ProductListView: View {
     
     @StateObject private var viewModel = SampleViewModel(environment: URL(string: "https://fakestoreapi.com")!)
     
+    @EnvironmentObject var errorHandling: ErrorHandling
+    
     var body: some View {
         NavigationView {
             List(products, id: \.ident) { product in
@@ -36,7 +38,7 @@ struct ProductListView: View {
                             categories = try await viewModel.loadCategoriesWithFilter(title)
                             showingCategories = true
                         } catch {
-                            print(error.localizedDescription)
+                            errorHandling.handle(error: error)
                         }
                     }
                 }
@@ -52,7 +54,7 @@ struct ProductListView: View {
                                     products = try await viewModel.loadProducts()
                                     showingCategories = false
                                 } catch {
-                                    print(error.localizedDescription)
+                                    errorHandling.handle(error: error)
                                 }
                             }
                         }
@@ -65,7 +67,7 @@ struct ProductListView: View {
                                     products = try await viewModel.filterByCategory(category.title)
                                     showingCategories = false
                                 } catch {
-                                    print(error.localizedDescription)
+                                    errorHandling.handle(error: error)
                                 }
                             }
                         }
@@ -77,7 +79,7 @@ struct ProductListView: View {
             do {
                 products = try await viewModel.loadProducts()
             } catch {
-                print(error.localizedDescription)
+                errorHandling.handle(error: error)
             }
         }
     }

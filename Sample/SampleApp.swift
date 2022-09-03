@@ -12,6 +12,7 @@ struct SampleApp: App {
     var body: some Scene {
         WindowGroup {
             ProductListView()
+                .withErrorHandling()
         }
     }
 }

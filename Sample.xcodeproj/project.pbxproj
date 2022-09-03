@@ -24,6 +24,7 @@
 		29D19EE328C351080063E59F /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D19EE228C351080063E59F /* ProductDetailView.swift */; };
 		29D19EE528C351270063E59F /* ProductRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D19EE428C351270063E59F /* ProductRowView.swift */; };
 		29D19EE828C35C970063E59F /* ArrayExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D19EE728C35C970063E59F /* ArrayExt.swift */; };
+		29D19EEA28C3618B0063E59F /* ViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D19EE928C3618B0063E59F /* ViewExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		29D19EE228C351080063E59F /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		29D19EE428C351270063E59F /* ProductRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRowView.swift; sourceTree = "<group>"; };
 		29D19EE728C35C970063E59F /* ArrayExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExt.swift; sourceTree = "<group>"; };
+		29D19EE928C3618B0063E59F /* ViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				29D19EE728C35C970063E59F /* ArrayExt.swift */,
+				29D19EE928C3618B0063E59F /* ViewExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				29D19ED928C324E20063E59F /* SampleService.swift in Sources */,
 				29D19ED428C320660063E59F /* SampleError.swift in Sources */,
 				29D19EE128C342CD0063E59F /* ProductListView.swift in Sources */,
+				29D19EEA28C3618B0063E59F /* ViewExt.swift in Sources */,
 				29D19EDB28C326DA0063E59F /* SampleViewModel.swift in Sources */,
 				29D19EE528C351270063E59F /* ProductRowView.swift in Sources */,
 				29BC9A9828C3169200D7A8A3 /* SampleApp.swift in Sources */,

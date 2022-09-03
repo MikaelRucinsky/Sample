@@ -12,6 +12,7 @@ struct ProductDetailView: View {
     let viewModel: SampleViewModel
     
     @State private var product: Product?
+    @EnvironmentObject var errorHandling: ErrorHandling
     
     init(productID: Int, viewModel: SampleViewModel) {
         self.productID = productID
@@ -64,16 +65,10 @@ struct ProductDetailView: View {
                         do {
                             product = try await viewModel.loadProductDetailFor(productID)
                         } catch {
-                            print(error.localizedDescription)
+                            errorHandling.handle(error: error)
                         }
                     }
             }
         }
     }
 }
-
-//struct ProductDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        ProductDetailView(productID: 1, viewModel: <#SampleViewModel#>)
-//    }
-//}
