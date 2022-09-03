@@ -21,6 +21,7 @@
 		29D19EDB28C326DA0063E59F /* SampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D19EDA28C326DA0063E59F /* SampleViewModel.swift */; };
 		29D19EDD28C330130063E59F /* CategoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D19EDC28C330130063E59F /* CategoriesRequest.swift */; };
 		29D19EDF28C333F80063E59F /* ProductDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D19EDE28C333F80063E59F /* ProductDetailRequest.swift */; };
+		29D19EE128C342CD0063E59F /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D19EE028C342CC0063E59F /* ProductListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		29D19EDA28C326DA0063E59F /* SampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewModel.swift; sourceTree = "<group>"; };
 		29D19EDC28C330130063E59F /* CategoriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequest.swift; sourceTree = "<group>"; };
 		29D19EDE28C333F80063E59F /* ProductDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailRequest.swift; sourceTree = "<group>"; };
+		29D19EE028C342CC0063E59F /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +111,10 @@
 		29BC9A9628C3169200D7A8A3 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				29BC9A9728C3169200D7A8A3 /* SampleApp.swift */,
+				29D19EE028C342CC0063E59F /* ProductListView.swift */,
 				29D19ED228C31F7C0063E59F /* Errors */,
 				29D19ECF28C31E7F0063E59F /* Networking */,
-				29BC9A9728C3169200D7A8A3 /* SampleApp.swift */,
 				29BC9A9928C3169200D7A8A3 /* ContentView.swift */,
 				29D19EDA28C326DA0063E59F /* SampleViewModel.swift */,
 				29D19ED828C324E20063E59F /* SampleService.swift */,
@@ -308,6 +311,7 @@
 				29D19EDD28C330130063E59F /* CategoriesRequest.swift in Sources */,
 				29D19ED928C324E20063E59F /* SampleService.swift in Sources */,
 				29D19ED428C320660063E59F /* SampleError.swift in Sources */,
+				29D19EE128C342CD0063E59F /* ProductListView.swift in Sources */,
 				29D19EDB28C326DA0063E59F /* SampleViewModel.swift in Sources */,
 				29BC9A9A28C3169200D7A8A3 /* ContentView.swift in Sources */,
 				29BC9A9828C3169200D7A8A3 /* SampleApp.swift in Sources */,
